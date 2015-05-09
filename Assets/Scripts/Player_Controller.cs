@@ -3,7 +3,9 @@ using System.Collections;
 
 public partial class Player_Controller : MonoBehaviour {
 
-    public float speed = 10f;
+	public float initSpeed = 10f;
+
+	public float speed = 10f;
 
     private Map_Generator generator;
     private Rigidbody rigid;
@@ -19,6 +21,9 @@ public partial class Player_Controller : MonoBehaviour {
         float v = speed * Input.GetAxis("Vertical");
         //transform.Translate(h, 0, v);
 		rigid.velocity = new Vector3(h, 0, v);
+		
+		UpdateFonc();
+
 	}
 
     void OnTriggerEnter(Collider other)
