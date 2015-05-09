@@ -118,7 +118,8 @@ MonoBehaviour:
   Ground_Prefab: {fileID: 199432, guid: a23eefd2d03c02b4d856632b35a00777, type: 2}
   Finish_Prefab: {fileID: 174640, guid: 82f54313969c13f4a922a48992c82264, type: 2}
   Camera: {fileID: 573399966}
-  item_list: []
+  item_list:
+  - {fileID: 195468, guid: 43c0e2900459cbf41a528c4bb825081b, type: 2}
   Size: 10
 --- !u!4 &195599344
 Transform:
