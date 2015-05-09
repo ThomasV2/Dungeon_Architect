@@ -198,7 +198,7 @@ GameObject:
   - 54: {fileID: 5479852}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,7 +639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6998d27c20925f4f80698759b608d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initSpeed: 10
   speed: 10
+  slowTimer: 0
+  isSlowed: 0
 --- !u!114 &11471442
 MonoBehaviour:
   m_ObjectHideFlags: 1
