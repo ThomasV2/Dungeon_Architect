@@ -31,6 +31,7 @@ public class Map_Generator : MonoBehaviour {
         Finish,
         Spike_sac,
         Spike_trap,
+		Bump_sac,
 		Bump_obj
     };
 
@@ -42,7 +43,7 @@ public class Map_Generator : MonoBehaviour {
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 1, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 0, 0, 7, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -50,7 +51,7 @@ public class Map_Generator : MonoBehaviour {
             {-1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 1, 6, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 7, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -109,7 +110,7 @@ public class Map_Generator : MonoBehaviour {
                 case (int)Tile_Type.Spike_sac:
 				case (int)Tile_Type.Spike_trap:
 				case (int)Tile_Type.Bump_obj:
-
+				case (int)Tile_Type.Bump_sac:
 					ground = Instantiate(Prefab[typeItem]);
                     ground.transform.position = new Vector3(x, 0, y);
                     ground.transform.parent = parent.transform;

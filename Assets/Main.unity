@@ -121,6 +121,8 @@ MonoBehaviour:
   - {fileID: 192672, guid: 82f54313969c13f4a922a48992c82264, type: 2}
   - {fileID: 172236, guid: 6538bba80b7c95f439c1c2462f916839, type: 2}
   - {fileID: 195468, guid: 3bab166fb7cd7444ab716263d9f66eb9, type: 2}
+  - {fileID: 150700, guid: b8b47f5256ff0ba4e9fb8f1b22f271e6, type: 2}
+  - {fileID: 112654, guid: 8124acf5af40d08449a1489850ee9adf, type: 2}
   Camera: {fileID: 573399966}
   item_list: 
 --- !u!4 &195599344
