@@ -29,7 +29,7 @@ public class Map_Generator : MonoBehaviour {
         Ground,
         Begin,
         Finish,
-        Spike_item,
+        Spike_sac,
         Spike_trap,
 		Bump_obj
     };
@@ -113,8 +113,8 @@ public class Map_Generator : MonoBehaviour {
                             ground.transform.parent = parent.transform;
                             break;
                         
-                        case (int)Tile_Type.Spike_item:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Spike_item]);
+                        case (int)Tile_Type.Spike_sac:
+                            ground = Instantiate(Prefab[(int)Tile_Type.Spike_sac]);
                             ground.transform.position = new Vector3(x, 0, y);
                             ground.transform.parent = parent.transform;
                             ground = Instantiate(Prefab[(int)Tile_Type.Ground]);

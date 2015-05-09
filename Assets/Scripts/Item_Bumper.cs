@@ -22,6 +22,8 @@ public class Item_Bumper : MonoBehaviour {
 	}
 	
 	void Contact(Player_Controller thePlayer){
+		// verifier que la case cible est dispo
+		// map.getCaseTypeAt()
 		thePlayer.Teleport( transform.position + 2*Vector3.right );
 	}
 
