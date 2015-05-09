@@ -4,12 +4,10 @@ using System.Collections.Generic;
 
 public class Map_Generator : MonoBehaviour {
 
-    public GameObject Player_Prefab;
-    public GameObject Ground_Prefab;
-    public GameObject Finish_Prefab;
-    public GameObject Wall_Prefab;
+    //TODO même ordre que les Tiles !
+    public GameObject[] Prefab;
     public GameObject Camera;
-    public GameObject[] item_list;
+    public List<Tile_Type> item_list;
 
     private List<GameObject> Items = new List<GameObject>();
     private GameObject current_player;
@@ -22,14 +20,17 @@ public class Map_Generator : MonoBehaviour {
     private float velocity = 0f;
     private Vector3 pos_begin;
 
+    private GameObject parent;
     #region Map
-    enum Tile_Type
+    public enum Tile_Type
     {
         Invalid = -1,
         Wall,
         Ground,
         Begin,
-        Finish
+        Finish,
+        Spike_item,
+        Spike_trap
     };
 
         int[,] map = new int[20,20] 
@@ -47,7 +48,7 @@ public class Map_Generator : MonoBehaviour {
             {-1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -60,6 +61,12 @@ public class Map_Generator : MonoBehaviour {
         // Use this for initialization
     void Start()
         {
+            Generate();
+        }
+    void Generate()
+        {
+            parent = new GameObject();
+            parent.name = "Parent";
             GameObject ground;
 	        int y = 0;
             int x;
@@ -71,34 +78,58 @@ public class Map_Generator : MonoBehaviour {
                     switch (map[y,x])
                     {
                         case (int)Tile_Type.Invalid:
-                            ground = Instantiate(Wall_Prefab);
+                            ground = Instantiate(Prefab[0]);
                             ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
                             break;
 
                         case (int)Tile_Type.Wall:
-                            ground = Instantiate(Wall_Prefab);
+                            ground = Instantiate(Prefab[(int)Tile_Type.Wall]);
                             ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
                             break;
 
                         case (int)Tile_Type.Ground:
-                            ground = Instantiate(Ground_Prefab);
+                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
                             ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
                             break;
 
                         case (int)Tile_Type.Begin:
-                            ground = Instantiate(Player_Prefab);
+                            ground = Instantiate(Prefab[(int)Tile_Type.Begin]);
                             ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
                             pos_begin = ground.transform.position;
                             current_player = ground;
-                            ground = Instantiate(Ground_Prefab);
+                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
                             ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
                             break;
 
                         case (int)Tile_Type.Finish:
-                            ground = Instantiate(Finish_Prefab);
+                            ground = Instantiate(Prefab[(int)Tile_Type.Finish]);
                             ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
                             break;
                         
+                        case (int)Tile_Type.Spike_item:
+                            ground = Instantiate(Prefab[(int)Tile_Type.Spike_item]);
+                            ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
+                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
+                            ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
+                            break;
+
+                        case (int)Tile_Type.Spike_trap:
+                            ground = Instantiate(Prefab[(int)Tile_Type.Spike_trap]);
+                            ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
+                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
+                            ground.transform.position = new Vector3(x, 0, y);
+                            ground.transform.parent = parent.transform;
+                            break;
+
                         default:
                             break;
                     }
@@ -106,17 +137,13 @@ public class Map_Generator : MonoBehaviour {
                 }
                 ++y;
             }
-        foreach (GameObject item in Items)
-        {
-            Instantiate(item);
-        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (current_player != null)
             Camera.transform.position = new Vector3(current_player.transform.position.x + 2f, current_player.transform.position.y + 7.5f, current_player.transform.position.z + -7.5f);
-        else
+        else if (current_item != null)
             Camera.transform.position = new Vector3(Mathf.SmoothDamp(Camera.transform.position.x, current_item.transform.position.x + 2f, ref velocity, 0.1f), Mathf.SmoothDamp(Camera.transform.position.y, current_item.transform.position.y + 7.5f, ref velocity, 0.1f), Mathf.SmoothDamp(Camera.transform.position.z, current_item.transform.position.z + -7.5f, ref velocity, 0.1f));
         if (isBuild && timer > 0.1f)
         {
@@ -143,16 +170,16 @@ public class Map_Generator : MonoBehaviour {
             current_item.transform.position = new Vector3(current_x, current_item.transform.position.y, current_y);
            if (Input.GetButtonDown("Prev"))
             {
-                index_select = index_select > 0 ? index_select - 1 : item_list.Length - 1;
-                GameObject new_item = Instantiate(item_list[index_select]);
+                index_select = index_select > 0 ? index_select - 1 : item_list.Count - 1;
+                GameObject new_item = Instantiate(Prefab[(int)item_list[index_select]]);
                 new_item.transform.position = current_item.transform.position;
                 Destroy(current_item);
                 current_item = new_item;
             }
             else if (Input.GetButtonDown("Next"))
             {
-                index_select = index_select < item_list.Length - 1 ? index_select + 1 : 0;
-                GameObject new_item = Instantiate(item_list[index_select]);
+                index_select = index_select < item_list.Count - 1 ? index_select + 1 : 0;
+                GameObject new_item = Instantiate(Prefab[(int)item_list[index_select]]);
                 new_item.transform.position = current_item.transform.position;
                 Destroy(current_item);
                 current_item = new_item;
@@ -160,11 +187,20 @@ public class Map_Generator : MonoBehaviour {
             if (Input.GetButtonDown("Validation") && checkValidation())
             {
                 current_item.transform.position = new Vector3(current_item.transform.position.x, 0f, current_item.transform.position.z);
-                Items.Add(current_item);
-                isBuild = false;
-                current_item = null;
-                current_player = Instantiate(Player_Prefab);
-                current_player.transform.position = pos_begin;
+                // TODO mettre comme valeur (index_select + valeur) le nombre de tile qui ne sont pas des item_trap - 1 (à cause de l'invalide).
+                map[(int)current_item.transform.position.z, (int)current_item.transform.position.x] = (int)item_list[index_select];
+                item_list.RemoveAt(index_select);
+                Debug.Log("test");
+                if (item_list.Count <= 0)
+                {
+                    Debug.Log("ok");
+                    isBuild = false;
+                    current_item = null;
+                    Destroy(parent.gameObject);
+                    Generate();
+                }
+                else
+                    current_item = Instantiate(Prefab[(int)item_list[0]]);
             }
         }
         timer += Time.deltaTime;
@@ -189,9 +225,18 @@ public class Map_Generator : MonoBehaviour {
     {
         Destroy(current_player);
         isBuild = true;
-        index_select = 0;
-        current_item = Instantiate(item_list[0]);
-        current_item.transform.position = new Vector3(1f, 0.5f, 1f);
+        if (item_list.Count > 0)
+        {
+            current_item = Instantiate(Prefab[(int)item_list[0]]);
+            current_item.transform.position = new Vector3(1f, 0.5f, 1f);
+        }
+        else
+        {
+            isBuild = false;
+            current_item = null;
+            Destroy(parent.gameObject);
+            Generate();
+        }
     }
 
 }
