@@ -71,6 +71,8 @@ public class Map_Generator : MonoBehaviour {
                     switch (map[y,x])
                     {
                         case (int)Tile_Type.Invalid:
+                            ground = Instantiate(Wall_Prefab);
+                            ground.transform.position = new Vector3(x, 0, y);
                             break;
 
                         case (int)Tile_Type.Wall:
