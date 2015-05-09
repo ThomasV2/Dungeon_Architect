@@ -30,7 +30,8 @@ public class Map_Generator : MonoBehaviour {
         Begin,
         Finish,
         Spike_item,
-        Spike_trap
+        Spike_trap,
+		Bump_obj
     };
 
         int[,] map = new int[20,20] 
@@ -47,7 +48,7 @@ public class Map_Generator : MonoBehaviour {
             {-1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 0, 0, 0, -1},
             {-1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 6, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -129,6 +130,16 @@ public class Map_Generator : MonoBehaviour {
                             ground.transform.position = new Vector3(x, 0, y);
                             ground.transform.parent = parent.transform;
                             break;
+
+						case (int)Tile_Type.Bump_obj:
+							ground = Instantiate(Prefab[(int)Tile_Type.Bump_obj]);
+							ground.transform.position = new Vector3(x, 0, y);
+							ground.transform.parent = parent.transform;
+							ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
+							ground.transform.position = new Vector3(x, 0, y);
+							ground.transform.parent = parent.transform;
+							break;
+
 
                         default:
                             break;

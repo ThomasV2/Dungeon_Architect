@@ -13,6 +13,13 @@ public partial class Player_Controller : MonoBehaviour {
 		isSlowed = true;
 	}
 
+	//teleportation ou bumper
+	public void Teleport(Vector3 destination){
+		transform.position = destination ;
+	}
+
+
+	// Pour les timers
 	void UpdateFonc(){
 		if( isSlowed ){
 			slowTimer = slowTimer - Time.deltaTime;

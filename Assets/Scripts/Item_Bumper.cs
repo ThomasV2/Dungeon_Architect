@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item_Pic : MonoBehaviour {
+public class Item_Bumper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -16,12 +16,14 @@ public class Item_Pic : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player")
 		{
-			Debug.Log("Contact Pic !");
+			Debug.Log("Contact Bumper !");
 			Contact( other.gameObject.GetComponent<Player_Controller>());
 		}
 	}
 	
 	void Contact(Player_Controller thePlayer){
-		thePlayer.Slowed( 5f, 3f );
+		thePlayer.Teleport( transform.position + 2*Vector3.right );
 	}
+
+
 }
