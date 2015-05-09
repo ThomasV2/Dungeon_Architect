@@ -114,14 +114,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16ba0827aca3cd4d9bc00d984168d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Prefab: {fileID: 143630, guid: 10d637d0d3e9bb84188db87c99c36f2a, type: 2}
-  Ground_Prefab: {fileID: 103468, guid: 6044f8b16e2310a4b80b50262d71cf89, type: 2}
-  Finish_Prefab: {fileID: 192672, guid: 82f54313969c13f4a922a48992c82264, type: 2}
-  Wall_Prefab: {fileID: 190024, guid: efb9daee4c871df438b27132fbce1806, type: 2}
+  Prefab:
+  - {fileID: 190024, guid: efb9daee4c871df438b27132fbce1806, type: 2}
+  - {fileID: 103468, guid: 6044f8b16e2310a4b80b50262d71cf89, type: 2}
+  - {fileID: 143630, guid: 10d637d0d3e9bb84188db87c99c36f2a, type: 2}
+  - {fileID: 192672, guid: 82f54313969c13f4a922a48992c82264, type: 2}
+  - {fileID: 172236, guid: 6538bba80b7c95f439c1c2462f916839, type: 2}
+  - {fileID: 195468, guid: 3bab166fb7cd7444ab716263d9f66eb9, type: 2}
   Camera: {fileID: 573399966}
-  item_list:
-  - {fileID: 195468, guid: 43c0e2900459cbf41a528c4bb825081b, type: 2}
-  - {fileID: 195468, guid: 491b77598cd49b042bfbd26c75704067, type: 2}
+  item_list: 
 --- !u!4 &195599344
 Transform:
   m_ObjectHideFlags: 0
