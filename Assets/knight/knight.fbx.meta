@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 6a4174cf05e17d64dab2345d24d22055
+timeCreated: 1431169864
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm_L
+    100002: Arm_L_end
+    100004: Arm_R
+    100006: Arm_R_end
+    100008: Armature
+    100010: Arms
+    100012: Head
+    100014: Head_end
+    100016: Helmet
+    100018: //RootNode
+    100020: Leg_L
+    100022: Leg_L_end
+    100024: Leg_R
+    100026: Leg_R_end
+    100028: Legs
+    100030: Root
+    100032: Torso
+    100034: Torso_B
+    100036: Torso_T
+    100038: Point
+    100040: Sun
+    400000: Arm_L
+    400002: Arm_L_end
+    400004: Arm_R
+    400006: Arm_R_end
+    400008: Armature
+    400010: Arms
+    400012: Head
+    400014: Head_end
+    400016: Helmet
+    400018: //RootNode
+    400020: Leg_L
+    400022: Leg_L_end
+    400024: Leg_R
+    400026: Leg_R_end
+    400028: Legs
+    400030: Root
+    400032: Torso
+    400034: Torso_B
+    400036: Torso_T
+    400038: Point
+    400040: Sun
+    4300000: Torso
+    4300002: Arms
+    4300004: Legs
+    4300006: Helmet
+    7400000: Idle
+    7400002: Walk
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Arms
+    13700002: Helmet
+    13700004: Legs
+    13700006: Torso
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Armature|Idle
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Leg_L
+        weight: 1
+      - path: Armature/Root/Leg_L/Leg_L_end
+        weight: 1
+      - path: Armature/Root/Leg_R
+        weight: 1
+      - path: Armature/Root/Leg_R/Leg_R_end
+        weight: 1
+      - path: Armature/Root/Torso_B
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_L
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_L/Arm_L_end
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_R
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_R/Arm_R_end
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Head
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Head/Head_end
+        weight: 1
+      - path: Arms
+        weight: 1
+      - path: Helmet
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Torso
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Armature|Walk
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Leg_L
+        weight: 1
+      - path: Armature/Root/Leg_L/Leg_L_end
+        weight: 1
+      - path: Armature/Root/Leg_R
+        weight: 1
+      - path: Armature/Root/Leg_R/Leg_R_end
+        weight: 1
+      - path: Armature/Root/Torso_B
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_L
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_L/Arm_L_end
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_R
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Arm_R/Arm_R_end
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Head
+        weight: 1
+      - path: Armature/Root/Torso_B/Torso_T/Head/Head_end
+        weight: 1
+      - path: Arms
+        weight: 1
+      - path: Helmet
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Torso
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
