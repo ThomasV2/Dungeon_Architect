@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player_Controller : MonoBehaviour {
+public partial class Player_Controller : MonoBehaviour {
 
-    public float Speed = 10f;
+    public float speed = 10f;
 
     private Map_Generator generator;
     private Rigidbody rigid;
@@ -15,8 +15,8 @@ public class Player_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float h = Speed * Input.GetAxis("Horizontal");
-        float v = Speed * Input.GetAxis("Vertical");
+        float h = speed * Input.GetAxis("Horizontal");
+        float v = speed * Input.GetAxis("Vertical");
         //transform.Translate(h, 0, v);
 		rigid.velocity = new Vector3(h, 0, v);
 	}
