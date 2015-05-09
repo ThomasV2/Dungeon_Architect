@@ -120,6 +120,7 @@ MonoBehaviour:
   Camera: {fileID: 573399966}
   item_list:
   - {fileID: 195468, guid: 43c0e2900459cbf41a528c4bb825081b, type: 2}
+  - {fileID: 195468, guid: 491b77598cd49b042bfbd26c75704067, type: 2}
   Size: 10
 --- !u!4 &195599344
 Transform:

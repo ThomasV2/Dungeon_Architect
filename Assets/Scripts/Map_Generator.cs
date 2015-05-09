@@ -14,6 +14,7 @@ public class Map_Generator : MonoBehaviour {
     private List<GameObject> Items = new List<GameObject>();
     private GameObject current_player;
     private GameObject current_item;
+    private int index_select = 0;
     private int current_x = 1;
     private int current_y = 0;
     private bool isBuild = false;
@@ -67,8 +68,30 @@ public class Map_Generator : MonoBehaviour {
                 timer = 0f;
             }
             current_item.transform.position = new Vector3(current_x * 2f, 0f, current_y * 2f);
+           if (Input.GetButtonDown("Prev"))
+            {
+                index_select = index_select > 0 ? index_select - 1 : item_list.Length - 1;
+                GameObject new_item = Instantiate(item_list[index_select]);
+                new_item.transform.position = current_item.transform.position;
+                Destroy(current_item);
+                current_item = new_item;
+            }
+            else if (Input.GetButtonDown("Next"))
+            {
+                index_select = index_select < item_list.Length - 1 ? index_select + 1 : 0;
+                GameObject new_item = Instantiate(item_list[index_select]);
+                new_item.transform.position = current_item.transform.position;
+                Destroy(current_item);
+                current_item = new_item;
+            }
             if (Input.GetButtonDown("Validation"))
+            {
                 Debug.Log("Button !");
+                Items.Add(current_item);
+                isBuild = false;
+                current_item = null;
+                current_player = Instantiate(Player_Prefab);
+            }
         }
         timer += Time.deltaTime;
     }
@@ -77,7 +100,7 @@ public class Map_Generator : MonoBehaviour {
     {
         Destroy(current_player);
         isBuild = true;
-        // TODO modifier la valeur de 0 en index i variable
+        index_select = 0;
         current_item = Instantiate(item_list[0]);
     }
 }
