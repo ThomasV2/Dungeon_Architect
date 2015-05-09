@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Item_Bumper : MonoBehaviour {
 
+	private Map_Generator generator;
 	// Use this for initialization
 	void Start () {
-	
+		generator = GameObject.Find("Generator").GetComponent<Map_Generator>();	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -23,8 +24,9 @@ public class Item_Bumper : MonoBehaviour {
 	
 	void Contact(Player_Controller thePlayer){
 		// verifier que la case cible est dispo
-		// map.getCaseTypeAt()
-		thePlayer.Teleport( transform.position + 2*Vector3.right );
+		if ( generator.isCanEnter( transform.position + 2*Vector3.right ) ){
+			thePlayer.Teleport( transform.position + 2*Vector3.right );
+		}
 	}
 
 

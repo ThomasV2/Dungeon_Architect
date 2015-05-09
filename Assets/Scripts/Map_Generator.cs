@@ -34,14 +34,15 @@ public class Map_Generator : MonoBehaviour {
 		Bump_obj
     };
 
-        int[,] map = new int[20,20] 
+        
+	int[,] map = new int[20,20] 
             {
             {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 0, 0, 1, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -60,94 +61,70 @@ public class Map_Generator : MonoBehaviour {
     #endregion
 
         // Use this for initialization
-    void Start()
-        {
-            Generate();
-        }
+    void Start() {            
+		Generate();        
+	}
     void Generate()
-        {
-            parent = new GameObject();
-            parent.name = "Parent";
-            GameObject ground;
-	        int y = 0;
-            int x;
-            while (y < 20)
-            {
-                x = 0;
-                while (x < 20)
-                {
-                    switch (map[y,x])
-                    {
-                        case (int)Tile_Type.Invalid:
-                            ground = Instantiate(Prefab[0]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
+    {
+        parent = new GameObject();
+        parent.name = "Parent";
+        GameObject ground;
+        int y = 0;
+        int x;
+		int typeItem;
 
-                        case (int)Tile_Type.Wall:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Wall]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
+        while (y < 20) 
+		{
+            x = 0;
+            while (x < 20)
+            {			
+				typeItem = map[y,x];
+				switch ( typeItem )
+				{
+                case (int)Tile_Type.Invalid:
+                    ground = Instantiate(Prefab[0]);
+                    ground.transform.position = new Vector3(x, 0, y);
+                    ground.transform.parent = parent.transform;
+                    break;
 
-                        case (int)Tile_Type.Ground:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
+				case (int)Tile_Type.Wall:
+				case (int)Tile_Type.Ground:
+				case (int)Tile_Type.Finish:
+					ground = Instantiate(Prefab[typeItem]);
+                    ground.transform.position = new Vector3(x, 0, y);
+                    ground.transform.parent = parent.transform;
+                    break;
 
-                        case (int)Tile_Type.Begin:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Begin]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            pos_begin = ground.transform.position;
-                            current_player = ground;
-                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
+                case (int)Tile_Type.Begin:
+                    ground = Instantiate(Prefab[(int)Tile_Type.Begin]);
+                    ground.transform.position = new Vector3(x, 0, y);
+                    ground.transform.parent = parent.transform;
+                    pos_begin = ground.transform.position;
+                    current_player = ground;
+                    ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
+                    ground.transform.position = new Vector3(x, 0, y);
+                    ground.transform.parent = parent.transform;
+                    break;
 
-                        case (int)Tile_Type.Finish:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Finish]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
-                        
-                        case (int)Tile_Type.Spike_sac:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Spike_sac]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
+                case (int)Tile_Type.Spike_sac:
+				case (int)Tile_Type.Spike_trap:
+				case (int)Tile_Type.Bump_obj:
 
-                        case (int)Tile_Type.Spike_trap:
-                            ground = Instantiate(Prefab[(int)Tile_Type.Spike_trap]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
-                            ground.transform.position = new Vector3(x, 0, y);
-                            ground.transform.parent = parent.transform;
-                            break;
+					ground = Instantiate(Prefab[typeItem]);
+                    ground.transform.position = new Vector3(x, 0, y);
+                    ground.transform.parent = parent.transform;
+                    ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
+                    ground.transform.position = new Vector3(x, 0, y);
+                    ground.transform.parent = parent.transform;
+                    break;
 
-						case (int)Tile_Type.Bump_obj:
-							ground = Instantiate(Prefab[(int)Tile_Type.Bump_obj]);
-							ground.transform.position = new Vector3(x, 0, y);
-							ground.transform.parent = parent.transform;
-							ground = Instantiate(Prefab[(int)Tile_Type.Ground]);
-							ground.transform.position = new Vector3(x, 0, y);
-							ground.transform.parent = parent.transform;
-							break;
-
-
-                        default:
-                            break;
-                    }
-                    ++x;
+                default:
+                    break;
                 }
-                ++y;
+                ++x;
             }
+            ++y;
+        }
 	}
 	
 	// Update is called once per frame
@@ -231,6 +208,21 @@ public class Map_Generator : MonoBehaviour {
         }
         return true;
     }
+
+	public bool isCanEnter( Vector3 destination)
+	{
+		if (map[(int)destination.z, (int)destination.x] != (int)Tile_Type.Ground)
+			return false;
+		foreach (GameObject item in Items)
+		{
+			if ((item.transform.position.x == destination.x
+			     && item.transform.position.z == destination.z))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
     public void PutMode()
     {
