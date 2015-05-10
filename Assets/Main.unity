@@ -123,6 +123,7 @@ MonoBehaviour:
   - {fileID: 195468, guid: 3bab166fb7cd7444ab716263d9f66eb9, type: 2}
   - {fileID: 166502, guid: b8b47f5256ff0ba4e9fb8f1b22f271e6, type: 2}
   - {fileID: 112654, guid: 8124acf5af40d08449a1489850ee9adf, type: 2}
+  - {fileID: 119366, guid: adf9148a9b6918c4fb908dd925f53cc6, type: 2}
   Camera: {fileID: 573399966}
   item_list: 
   time_score: {fileID: 1157773698}
@@ -191,7 +192,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: .20588237, g: .0287629813, b: .0287629813, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

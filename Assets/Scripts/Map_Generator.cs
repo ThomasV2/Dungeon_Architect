@@ -23,6 +23,8 @@ public class Map_Generator : MonoBehaviour {
     private float velocity = 0f;
     private float score;
     private GameObject parent;
+    private float oldTime;
+
     #region Map
     public enum Tile_Type
     {
@@ -35,7 +37,8 @@ public class Map_Generator : MonoBehaviour {
         Spike_trap,
 		Bump_sac,
 		Bump_obj,
-		Terre
+		Ground_sac,
+        Terre
     };
 
         
@@ -53,8 +56,8 @@ public class Map_Generator : MonoBehaviour {
             {-1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 1, 1, 0, -1},
             {-1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 6, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 8, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 6, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -66,7 +69,6 @@ public class Map_Generator : MonoBehaviour {
 
         // Use this for initialization
     void Start() {
-        time_score.fontSize = Screen.width / 16;
 		Generate();        
 	}
     void Generate()
@@ -74,6 +76,7 @@ public class Map_Generator : MonoBehaviour {
         parent = new GameObject();
         parent.name = "Parent";
         score = 60f;
+        time_score.fontSize = Screen.width / 16;
         GameObject ground;
         int y = 0;
         int x;
@@ -115,6 +118,7 @@ public class Map_Generator : MonoBehaviour {
 				case (int)Tile_Type.Spike_trap:
 				case (int)Tile_Type.Bump_obj:
 				case (int)Tile_Type.Bump_sac:
+                case (int)Tile_Type.Ground_sac:
 					ground = Instantiate(Prefab[typeItem]);
                     ground.transform.position = new Vector3(x, 0, y);
                     ground.transform.parent = parent.transform;
@@ -136,6 +140,7 @@ public class Map_Generator : MonoBehaviour {
 	void Update () {
         if (isWait)
         {
+            time_score.fontSize = Screen.width / 30;
             time_score.text = "Please, change the Player and press A";
             if (Input.GetButtonDown("Validation"))
             {
@@ -149,7 +154,7 @@ public class Map_Generator : MonoBehaviour {
         else
         {
             if (current_player != null)
-                Camera.transform.position = new Vector3(current_player.transform.position.x + 2f, current_player.transform.position.y + 7.5f, current_player.transform.position.z + -7.5f);
+                Camera.transform.position = new Vector3(current_player.transform.position.x + 0f, current_player.transform.position.y + 2.5f, current_player.transform.position.z + -2.5f);
             else if (current_item != null)
                 Camera.transform.position = new Vector3(Mathf.SmoothDamp(Camera.transform.position.x, current_item.transform.position.x + 2f, ref velocity, 0.1f), Mathf.SmoothDamp(Camera.transform.position.y, current_item.transform.position.y + 7.5f, ref velocity, 0.1f), Mathf.SmoothDamp(Camera.transform.position.z, current_item.transform.position.z + -7.5f, ref velocity, 0.1f));
             if (isBuild && timer > 0.1f)
@@ -213,6 +218,16 @@ public class Map_Generator : MonoBehaviour {
             {
                 score -= Time.deltaTime;
                 time_score.text = score.ToString("0");
+                if (Input.GetButtonDown("Reset"))
+                {
+                    oldTime = score;
+                    item_list.Clear();
+                    current_item = null;
+                    Destroy(parent.gameObject);
+                    Generate();
+                    isWait = false;
+                    score = oldTime;
+                }
                 if (score <= 0)
                 {
                     item_list.Clear();
@@ -224,8 +239,16 @@ public class Map_Generator : MonoBehaviour {
 
     bool checkValidation()
     {
-        if (map[(int)current_item.transform.position.z, (int)current_item.transform.position.x] != (int)Tile_Type.Ground)
-            return false;
+        if (item_list[index_select] == Tile_Type.Ground)
+        {
+            if (map[(int)current_item.transform.position.z, (int)current_item.transform.position.x] != (int)Tile_Type.Wall)
+                return false;
+        }
+        else
+        {
+            if (map[(int)current_item.transform.position.z, (int)current_item.transform.position.x] != (int)Tile_Type.Ground)
+                return false;
+        }
         foreach (GameObject item in Items)
         {
             if ((item.transform.position.x == current_item.transform.position.x
