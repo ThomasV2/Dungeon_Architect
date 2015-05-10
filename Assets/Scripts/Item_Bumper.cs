@@ -28,8 +28,6 @@ public class Item_Bumper : MonoBehaviour {
 	}
 	
 	void Contact(Player_Controller thePlayer){
-
-
 		// verifier que la case cible est dispo
 		if ( generator.CheckCanEnter( transform.position + 2*Vector3.right ) ){
 			// on verifie si il a eu le temps de se réactiver
