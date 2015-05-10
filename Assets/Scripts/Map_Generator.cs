@@ -72,7 +72,6 @@ public class Map_Generator : MonoBehaviour {
     {
         parent = new GameObject();
         parent.name = "Parent";
-        score = 60f;
         GameObject ground;
         int y = 0;
         int x;
@@ -212,6 +211,11 @@ public class Map_Generator : MonoBehaviour {
             {
                 score -= Time.deltaTime;
                 time_score.text = score.ToString("0");
+                if (score <= 0)
+                {
+                    item_list.Clear();
+                    PutMode();
+                }
             }
         }
     }
