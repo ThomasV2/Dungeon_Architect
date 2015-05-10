@@ -263,7 +263,8 @@ public class Map_Generator : MonoBehaviour {
 
 	public bool CheckCanEnter( Vector3 destination )
 	{
-		if ( map[(int)Math.Round(destination.z, 0), (int)Math.Round(destination.x, 0)] == (int)Tile_Type.Wall )
+		Tile_Type destType = (Tile_Type) map[(int)Math.Round(destination.z, 0), (int)Math.Round(destination.x, 0)];
+		if ( destType == Tile_Type.Wall )
 			return false;
 		return true;
 	}
