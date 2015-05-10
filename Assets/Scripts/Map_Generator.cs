@@ -229,6 +229,7 @@ public class Map_Generator : MonoBehaviour {
 
     public void PutMode()
     {
+		Vector3 playerPos = current_player.transform.position;
         Destroy(current_player);
         if (item_list.Count > 0)
         {
@@ -241,9 +242,12 @@ public class Map_Generator : MonoBehaviour {
 			Destroy(current_player);
 
 			current_item = Instantiate(Prefab[(int)item_list[0]]);
-            current_item.transform.position = new Vector3(1f, 0.5f, 1f);
-        }
-        else
+			current_item.transform.position = playerPos; //new Vector3(1f, 0.5f, 1f);
+			current_x = (int)playerPos.x;
+			current_y = (int)playerPos.z;
+
+		}
+		else
         {
             isBuild = false;
             current_item = null;
