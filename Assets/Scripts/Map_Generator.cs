@@ -72,6 +72,7 @@ public class Map_Generator : MonoBehaviour {
     {
         parent = new GameObject();
         parent.name = "Parent";
+		score = 60f;
         GameObject ground;
         int y = 0;
         int x;
