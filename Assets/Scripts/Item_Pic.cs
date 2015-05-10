@@ -22,6 +22,6 @@ public class Item_Pic : MonoBehaviour {
 	}
 	
 	void Contact(Player_Controller thePlayer){
-		thePlayer.Slowed( 5f, 3f );
+		thePlayer.Slowed( 2f, 2f );
 	}
 }
