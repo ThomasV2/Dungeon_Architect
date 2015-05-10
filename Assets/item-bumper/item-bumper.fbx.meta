@@ -11,27 +11,32 @@ ModelImporter:
     100006: Cylinder
     100008: Cylinder.001
     100010: //RootNode
+    100012: BezierCurve
     400000: Cube
     400002: Cube.001
     400004: Cube.002
     400006: Cylinder
     400008: Cylinder.001
     400010: //RootNode
+    400012: BezierCurve
     2300000: Cube
     2300002: Cube.001
     2300004: Cube.002
     2300006: Cylinder
     2300008: Cylinder.001
+    2300010: BezierCurve
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.002
     3300006: Cylinder
     3300008: Cylinder.001
+    3300010: BezierCurve
     4300000: Cylinder
     4300002: Cube.001
     4300004: Cube
     4300006: Cube.002
     4300008: Cylinder.001
+    4300010: BezierCurve
   materials:
     importMaterials: 1
     materialName: 0
