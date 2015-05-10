@@ -15,6 +15,7 @@ public partial class Player_Controller : MonoBehaviour {
 
 	//teleportation ou bumper
 	public void Teleport(Vector3 destination){
+		Debug.Log("Teleport ! " + destination);
 		transform.position = destination ;
 	}
 

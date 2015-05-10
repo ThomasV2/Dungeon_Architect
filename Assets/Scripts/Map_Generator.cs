@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -260,10 +261,9 @@ public class Map_Generator : MonoBehaviour {
         return true;
     }
 
-	public bool CheckCanEnter( Vector3 destination)
+	public bool CheckCanEnter( Vector3 destination )
 	{
-		Debug.Log("Contact Bumper !");
-		if (map[(int)destination.z, (int)destination.x] == (int)Tile_Type.Wall)
+		if ( map[(int)Math.Round(destination.z, 0), (int)Math.Round(destination.x, 0)] == (int)Tile_Type.Wall )
 			return false;
 		return true;
 	}
