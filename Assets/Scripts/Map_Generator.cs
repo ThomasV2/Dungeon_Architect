@@ -153,7 +153,7 @@ public class Map_Generator : MonoBehaviour {
         if (isWait)
         {
             time_score.fontSize = Screen.width / 30;
-            time_score.text = "Please, change the Player and press A";
+            time_score.text = "Give the controller to the next player and press A";
             if (Input.GetButtonDown("Validation"))
             {
                 current_item = null;
