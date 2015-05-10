@@ -65,14 +65,15 @@ public class Map_Generator : MonoBehaviour {
     #endregion
 
         // Use this for initialization
-    void Start() {            
+    void Start() {
+        time_score.fontSize = Screen.width / 16;
 		Generate();        
 	}
     void Generate()
     {
         parent = new GameObject();
         parent.name = "Parent";
-		score = 60f;
+        score = 60f;
         GameObject ground;
         int y = 0;
         int x;
