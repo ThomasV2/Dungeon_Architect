@@ -31,7 +31,9 @@ public class Map_Generator : MonoBehaviour {
         Finish,
         Spike_sac,
         Spike_trap,
-		Bump_obj
+		Bump_sac,
+		Bump_obj,
+		Terre
     };
 
         
@@ -39,18 +41,18 @@ public class Map_Generator : MonoBehaviour {
             {
             {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 1, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 0, 1, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 0, 7, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 0, 0, 0, -1},
-            {-1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 6, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
-            {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, -1},
+            {-1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 3, 1, 1, 0, -1},
+            {-1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 6, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, -1},
+            {-1, 0, 0, 0, 0, 1, 1, 4, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
             {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
@@ -82,8 +84,8 @@ public class Map_Generator : MonoBehaviour {
 				switch ( typeItem )
 				{
                 case (int)Tile_Type.Invalid:
-                    ground = Instantiate(Prefab[0]);
-                    ground.transform.position = new Vector3(x, 0, y);
+					ground = Instantiate(Prefab[(int)Tile_Type.Wall]);
+					ground.transform.position = new Vector3(x, 0, y);
                     ground.transform.parent = parent.transform;
                     break;
 
@@ -109,7 +111,7 @@ public class Map_Generator : MonoBehaviour {
                 case (int)Tile_Type.Spike_sac:
 				case (int)Tile_Type.Spike_trap:
 				case (int)Tile_Type.Bump_obj:
-
+				case (int)Tile_Type.Bump_sac:
 					ground = Instantiate(Prefab[typeItem]);
                     ground.transform.position = new Vector3(x, 0, y);
                     ground.transform.parent = parent.transform;
@@ -209,31 +211,43 @@ public class Map_Generator : MonoBehaviour {
         return true;
     }
 
-	public bool isCanEnter( Vector3 destination)
+	public bool CheckCanEnter( Vector3 destination)
 	{
-		if (map[(int)destination.z, (int)destination.x] != (int)Tile_Type.Ground)
+		Debug.Log("Contact Bumper !");
+		if (map[(int)destination.z, (int)destination.x] == (int)Tile_Type.Wall)
 			return false;
-		foreach (GameObject item in Items)
+/*		foreach (GameObject item in Items)
 		{
-			if ((item.transform.position.x == destination.x
+			if ((   item.transform.position.x == destination.x
 			     && item.transform.position.z == destination.z))
 			{
 				return false;
 			}
 		}
-		return true;
+*/		return true;
 	}
 
     public void PutMode()
     {
+		Vector3 playerPos = current_player.transform.position;
         Destroy(current_player);
-        isBuild = true;
         if (item_list.Count > 0)
         {
-            current_item = Instantiate(Prefab[(int)item_list[0]]);
-            current_item.transform.position = new Vector3(1f, 0.5f, 1f);
-        }
-        else
+
+			Destroy(parent.gameObject);
+			// on regenere la map pour avoir les sacs
+			Generate();
+			isBuild = true;
+			// TODO: eviter de créer le joueur pour le redétruire
+			Destroy(current_player);
+
+			current_item = Instantiate(Prefab[(int)item_list[0]]);
+			current_item.transform.position = playerPos; //new Vector3(1f, 0.5f, 1f);
+			current_x = (int)playerPos.x;
+			current_y = (int)playerPos.z;
+
+		}
+		else
         {
             isBuild = false;
             current_item = null;

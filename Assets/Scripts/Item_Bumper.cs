@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Item_Bumper : MonoBehaviour {
 
+	float CST_DEACTIVATION_TIME = 3f;
+
+	float lastActivationTime = 0f;
+	bool isOn = true;
+
 	private Map_Generator generator;
 	// Use this for initialization
 	void Start () {
@@ -24,8 +29,20 @@ public class Item_Bumper : MonoBehaviour {
 	
 	void Contact(Player_Controller thePlayer){
 		// verifier que la case cible est dispo
-		if ( generator.isCanEnter( transform.position + 2*Vector3.right ) ){
-			thePlayer.Teleport( transform.position + 2*Vector3.right );
+		if ( generator.CheckCanEnter( transform.position + 2*Vector3.right ) ){
+			// on verifie si il a eu le temps de se réactiver
+			if( !isOn ){
+				if( Time.time > lastActivationTime + CST_DEACTIVATION_TIME ){
+					isOn = true;
+				}
+			}
+			// teleport si actif
+			if( isOn ){
+				thePlayer.Teleport( transform.position + 2*Vector3.right );
+				lastActivationTime = Time.time;
+				isOn = false;
+			}
+
 		}
 	}
 

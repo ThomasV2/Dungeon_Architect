@@ -7,9 +7,9 @@ public partial class Player_Controller : MonoBehaviour {
     const float TRANSLATION_EXP = 10f;
     const float WALKING_ANIMATION_EXP = 10f;
 
-	public float initSpeed = 10f;
+	public float initSpeed = 6f;
 
-	public float speed = 10f;
+	public float speed ;
 
     private Map_Generator generator;
     private Rigidbody rigid;
@@ -17,6 +17,7 @@ public partial class Player_Controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		speed = initSpeed;
         rigid = this.gameObject.GetComponent<Rigidbody>();
         generator = GameObject.Find("Generator").GetComponent<Map_Generator>();
         anim = this.GetComponent<Animator>();
